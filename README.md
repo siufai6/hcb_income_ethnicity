@@ -10,3 +10,8 @@ Also, as suggested by DWP, we calculate 3 year average and plot the trend as sho
 
 
 ![image](https://github.com/user-attachments/assets/95f86f54-fc8d-4494-8915-deac432b16de)
+
+
+mig_lsoa.py
+
+This file uses data from  [census 2021] (https://www.nomisweb.co.uk/sources/census_2021_mig) and sum up all the migrant numbers in each LSOA for asian, black, multiple ethnicity groups.  This is basically all non-white migrants in each area.  We calculate the percentage of this population in the total migrant population.  Then we normalize the pct to range of 0 to 10.  
