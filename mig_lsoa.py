@@ -24,7 +24,12 @@ def read_csv(data_file):
 
 def combine_other_ethnic_groups(df):
     # Group by 'Group' and calculate the sum for non-white ethnicities
-    others_df = df[df['Ethnic group (6 categories) label'] != 'White'].groupby(['Lower layer Super Output Areas code','Lower layer Super Output Areas label','Migration LSOA (inflow) (6 categories) code','Migration LSOA (inflow) (6 categories) label'], as_index=False).agg({'Percentage': 'sum','Count':'sum'})
+    AGGR_BY={'Percentage': 'sum','Count':'sum'}
+    #AGGR_BY={'Count':'sum'}
+    
+    GROUP_BY=['Lower layer Super Output Areas code','Lower layer Super Output Areas label','Migration LSOA (inflow) (6 categories) code','Migration LSOA (inflow) (6 categories) label']
+    others_df = df[df['Ethnic group (6 categories) label'] != 'White'].groupby(GROUP_BY, as_index=False).agg(AGGR_BY)
+    #others_df = df[df['Ethnic group (6 categories) label'] != 'White'].groupby(['Lower layer Super Output Areas code','Lower layer Super Output Areas label','Migration LSOA (inflow) (6 categories) code','Migration LSOA (inflow) (6 categories) label'], as_index=False).agg({'Percentage': 'sum','Count':'sum'})
     others_df['Ethnic group (6 categories) label'] = 'others'
     others_df['Ethnic group (6 categories) code']=0
     others_df.to_csv("./temp.csv")
